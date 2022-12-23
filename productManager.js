@@ -1,13 +1,10 @@
-const fs = require('fs');
 
+const fs = require('fs');
 
 const products = []
 
-
 class ProductManager {
-
     static id = 1
-
     constructor(title, description, price, thumbnail, code, stock) {
         this.filepath = 'data.json';
         this.title = title
@@ -16,25 +13,17 @@ class ProductManager {
         this.thumbnail = thumbnail
         this.code = code
         this.stock = stock
-         ProductManager.id
+        ProductManager.id
     }
 
     async readFile() {
         try {
             const content = await fs.promises.readFile(this.filepath, "utf-8")
             const parseContent = JSON.parse(content)
-
             return parseContent
-
-        }
-
-
-        catch (err) {
+        } catch (err) {
             console.log(err)
-
         }
-
-
     }
 
     async getProducts() {
@@ -42,86 +31,57 @@ class ProductManager {
         try {
             if (fileContent.lenght === 0) console.log("no hay productos");
             else console.log(fileContent)
-
-
-        }
-        catch (err) {
-            console.log("not products")
+        } catch (err) {
+            console.log("there aren't products")
         }
     }
 
     async checkCode(code) {
         const fileContent = await this.readFile();
         return fileContent.find((obj) => obj.code === code)
-
     }
 
-
-     addProducts() {
+    addProducts() {
         const fileContent =  this.readFile()
         
-                 let product= ({
+        let product= ({
             title: this.title,
             description: this.description,
             price: this.price,
             thumbnail: this.thumbnail,
             code: this.code,
             stock: this.stock,
-            id:ProductManager.id
-            
-          
+            id:ProductManager.id  
         })
-         
         const verifyCode = products.find(element => element.code === product.code)
-         
-        if(verifyCode) {
-            console.log("ERR")
-        }
-       
-            
-        else {
-            products.push(product)
-            ProductManager.id++
-
-            console.log(products)
-        }
-        if (!product.title || !product.description || !product.price ||
-
-            !product.thumbnail || !product.code || !product.stock) {
-  
-          throw new Error("All fields are required");
-  
-        }
-            
+            if(verifyCode) {
+                console.log("ERR")
+            } else {
+                products.push(product)
+                ProductManager.id++
+                console.log(products)
+            }
+            if (!product.title || !product.description || !product.price || !product.thumbnail || !product.code || !product.stock) {
+                throw new Error("All fields are required");
+            } 
     }
 
-    guardaEnArchivo(){
+    saveInFile(){
         try{
             fs.writeFileSync(this.filepath, JSON.stringify(products));
-    
-        }catch(err){
+        } catch(err){
             throw new Error (err);
-    
         }
     
     }
-    
-        
-
-                
 
     async getProductsById(id) {
         try {
             const fileContent = await this.readFile()
-            if (!fileContent.find((obj) => obj.id === id)) throw new Error("product whit that id not found")
+            if (!fileContent.find((obj) => obj.id === id)) throw new Error("PRODUCT ID UNKNOWN")
             else console.log(fileContent.find((obj) => obj.id === id))
-        }
-        catch (err) {
-            console.log("product whit that id not found")
-
-
-
-
+        } catch (err) {
+            console.log("PRODUCT ID UNKNOWN")
         }
 
     }
@@ -129,15 +89,11 @@ class ProductManager {
     async updateProduct(id, obj) {
         try {
             const fileContent = await this.readFile()
-
             const update = fileContent.map((product) => product.id === id ? { ...product, ...obj } : product)
-
-            if (!fileContent.find((obj) => obj.id === id)) throw new Error("product whit that id not found")
-
+            if (!fileContent.find((obj) => obj.id === id)) throw new Error("PRODUCT ID UNKNOWN")
             else await fs.promises.writeFile(this.filepath, JSON.stringify(update, null, 2))
-
         } catch (err) {
-            console.log("erorr")
+            console.log("ERROR")
         }
     }
 
@@ -146,16 +102,9 @@ class ProductManager {
         const fileContent = await this.readFile()
         const productsFilter = fileContent.filter((product) => product.id !== id)
 
-        if (!fileContent.find((obj) => obj.id === id)) throw new Error("not product to delate")
+        if (!fileContent.find((obj) => obj.id === id)) throw new Error("EMPTY")
         else await fs.promises.writeFile(this.filepath, JSON.stringify(productsFilter, null, 2))
     } 
-
-
-
-
 }
-
-
-
 
 module.exports = ProductManager
