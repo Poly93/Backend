@@ -29,7 +29,7 @@ class ProductManager {
     async getProducts() {
         const fileContent = await this.readFile()
         try {
-            if (fileContent.lenght === 0) console.log("no hay productos");
+            if (fileContent.lenght === 0) console.log("there aren't products");
             else console.log(fileContent)
         } catch (err) {
             console.log("there aren't products")
