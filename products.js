@@ -1,18 +1,18 @@
 const products = [{
-    title: "bmw",
-    description : "v8",
-    price: 100.000,
+    title: "Shell",
+    description : "Helix",
+    price: 6.000,
     thumbnail: "img",
-    code: 2,
-    stock: 2,
+    code: "#1ABC",
+    stock: 26,
     },
     {
-    title: "bmw",
-    description : "v6",
-    price: 100.33333,
+    title: "Liqui Moly",
+    description : "Ceratec",
+    price: 11.000,
     thumbnail: "img",
-    code: 2,
-    stock: 2,
+    code: "#2ABC",
+    stock: 13,
     }]
 
 module.exports = products
