@@ -1,12 +1,12 @@
 
 const fs = require('fs');
 
-const products = []
+// const products = []
 
 class ProductManager {
     static id = 1
     constructor(title, description, price, thumbnail, code, stock) {
-        this.filepath = 'data.json';
+        this.filepath = './data/productos.json';
         this.title = title
         this.description = description
         this.price = price
@@ -27,13 +27,14 @@ class ProductManager {
     }
 
     async getProducts() {
-        const fileContent = await this.readFile()
-        try {
-            if (fileContent.lenght === 0) console.log("there aren't products");
-            else console.log(fileContent)
-        } catch (err) {
-            console.log("there aren't products")
-        }
+        return JSON.parse(fs.readFileSync(this.filepath, "utf-8"))
+        // const fileContent = await this.readFile()
+        // try {
+        //     if (fileContent.lenght === 0) console.log("there aren't products");
+        //     else console.log(fileContent)
+        // } catch (err) {
+        //     console.log("there aren't products")
+        // }
     }
 
     async checkCode(code) {
@@ -51,8 +52,9 @@ class ProductManager {
             thumbnail: this.thumbnail,
             code: this.code,
             stock: this.stock,
-            id:ProductManager.id  
+            id: ProductManager.id  
         })
+
         const verifyCode = products.find(element => element.code === product.code)
             if(verifyCode) {
                 console.log("ERR")

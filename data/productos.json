@@ -1,0 +1,48 @@
+[{
+    "title": "Shell",
+    "description" : "Helix",
+    "price": 6.000,
+    "thumbnail": "img",
+    "code": "#1ABC",
+    "stock": 26
+},
+{
+    "title": "Liqui Moly",
+    "description": "Ceratec",
+    "price": 11.000,
+    "thumbnail": "img",
+    "code": "#2ABC",
+    "stock": 13
+},
+{
+    "title": "Ypf",
+    "description" : "Elaion F30",
+    "price": 9.300,
+    "thumbnail": "img",
+    "code": "#3ABC",
+    "stock": 12
+},
+{
+    "title": "Motul",
+    "description" : "8100",
+    "price": 13.000,
+    "thumbnail": "img",
+    "code": "#4ABC",
+    "stock": 2
+},
+{
+    "title": "Mobil",
+    "description" : "Super",
+    "price": 7.400,
+    "thumbnail": "img",
+    "code": "#5ABC",
+    "stock": 9
+},
+{
+    "title": "Valvoline",
+    "description" : "Tech",
+    "price": 12.000,
+    "thumbnail": "img",
+    "code": "#6ABC",
+    "stock": 5
+}]

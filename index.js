@@ -1,5 +1,5 @@
 const ProductManager = require("./productManager");
-const newProductManager = new ProductManager("data.json")
+const newProductManager = new ProductManager("./data/productos.json")
 
 
 const carOil1 = new ProductManager("Shell", "Helix", 6000, "img", "#1ABC", 26)
